@@ -22,9 +22,7 @@ app.get("/sto", (req, res) => {
   const { reqe } = req.query;
   console.log("requu", req.query);
   if (reqe) {
-    const resulet = data.filter(
-      (item) => Number(item.min_size) == Number(reqe)
-    );
+    const resulet = data.filter((item) => item.min_size == reqe);
     res.json(resulet);
   } else {
     res.json(data);
