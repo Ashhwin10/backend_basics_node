@@ -1,5 +1,7 @@
 const { data } = require("../DB/usersDB.json");
 
+const { queryErrors } = require("../validator/users.validator");
+
 const getUsers = (req, res) => {
   console.log("working-1");
   res.json(data);
@@ -7,6 +9,11 @@ const getUsers = (req, res) => {
 
 const searchUsers = (req, res) => {
   const { gender, age } = req.query;
+
+  const error = queryErrors({ age, gender });
+  if (error) {
+    return res.status(422).json(error);
+  }
 
   if (gender && age) {
     const results = data.filter(
