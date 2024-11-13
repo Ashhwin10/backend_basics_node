@@ -1,0 +1,6 @@
+if query - localhost:7000/users?gender=male
+
+
+
+if params - localhost:7000/users/6607d086-7159-4c26-beb1-280c9f9cbf35
+for uuid 

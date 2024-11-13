@@ -2,25 +2,8 @@ const { data } = require("../DB/usersDB.json");
 
 const { queryErrors, UUIDerror } = require("../validator/users.validator");
 
-const verifyAuth = (req) => {
-  const { authorization } = req.headers;
-  console.log("auth", authorization);
-  if (!authorization) {
-    return false;
-  }
-
-  if (authorization != process.env.ROUTE_PASSWORD) {
-    return false;
-  }
-  return true;
-};
-
 const getUsers = (req, res) => {
-  if (!verifyAuth(req)) {
-    return res.status(403).json({ message: "unAuthorized password" });
-  } else {
-    res.json(data);
-  }
+  res.json(data);
 };
 
 const searchUsers = (req, res) => {
