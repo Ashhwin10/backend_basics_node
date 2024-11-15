@@ -3,16 +3,17 @@ const { data } = require("../DB/usersDB.json");
 const { queryErrors, UUIDerror } = require("../validator/users.validator");
 
 const getUsers = (req, res) => {
+  console.log("1");
   res.json(data);
 };
 
 const searchUsers = (req, res) => {
   const { gender, age } = req.query;
-
+  console.log("neter");
   const error = queryErrors({ age, gender });
-  if (error) {
-    return res.status(422).json(error);
-  }
+  // if (error) {
+  //   return res.status(422).json(error);
+  // }
 
   if (gender && age) {
     const results = data.filter(
@@ -32,6 +33,7 @@ const searchUsers = (req, res) => {
 
 const searchUUID = (req, res) => {
   const { uuid } = req.params;
+  console.log("UUID route");
   const error = UUIDerror(uuid);
   if (error) {
     return res.status(422).json(error);
